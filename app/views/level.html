@@ -5,12 +5,13 @@
     md-row-height="1:1"
     md-gutter="4px"
     class="grid-container">
+    <div ng-repeat="row in map" style="width:500px">
       <md-grid-tile
-              ng-repeat="i in map"
-              ng-click="addPoints(i)"
-              class="tile">
-              <img ng-src="images/pizza_shadow_10.png">
-      </md-grid-tile>
-
+                ng-repeat="i in row track by $index"
+                ng-click="addPoints(i)"
+                class="tile">
+                <img ng-src="images/pizza_shadow_10.png" layout-fill>
+        </md-grid-tile>
+     </div>
     <!-- map è formata da array[array[], array[], ...] quindi bisogna sistemare ng-repeat-->
 </md-grid-list>
