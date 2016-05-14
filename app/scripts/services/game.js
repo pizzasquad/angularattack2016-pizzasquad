@@ -118,7 +118,7 @@ angular.module('geeGeeApp')
     game._updateAvailableTile = function (lastSelectedX, lastSelectedY) {
         
         // Clear the map, removing all the selectable tiles
-        for (var i = 0;i < this.map.length;i++) {
+        for (var i in this.map) {
             var row = this.map[i];
             for (var j = 0;j < row.length;j++) {
                 
@@ -127,7 +127,24 @@ angular.module('geeGeeApp')
             }
         }
 
+        var minX = Math.min(0, lastselectedX - 2);
+        var maxX = Math.min(this.map.length, lastselectedX + 2);
+
+        var minY = Math.min(0, lastselectedY - 2);
+        var maxY = Math.min(this.map.length, lastselectedX + 2);        
+
         // Now find the new selectable tiles and update them
+        for (var i = minX;i < maxX;i++) {
+            var row = this.map[i];
+            for (var j = minY;j < maxY;j++) {
+                if (j != 0 && i != o && i % 2 != 0 && j % 2 != 0) {
+                    // Switch state of the tile
+                    if (row[j] == TILE.TO_FILL || row[j] == TILE.TO_NOT_FILL) {
+                        row[j] = row[j] == TILE.TO_FILL ? TILE.SELECTABLE : TILE.SELECTABLE_TO_NOT_FILL;
+                    }
+                }
+            }
+        }
     }
 
     return game;
