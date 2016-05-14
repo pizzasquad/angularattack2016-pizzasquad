@@ -8,10 +8,8 @@
  * Controller of the geeGeeApp
  */
 angular.module('geeGeeApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('MainCtrl', function ($scope, Point, $location) {
+        $scope.goToMap = function (mapName) {
+            $location.url('/level/' + mapName);
+        }
+    });

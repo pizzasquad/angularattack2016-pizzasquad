@@ -1,9 +1,13 @@
 .grid-container {
-  margin: 0 auto;
-  width: 70%;
+    margin: 0 auto;
+    width: 70%;
 }
 
 .tile {
-  background-color: yellow;
-  border-radius: 25px;
+    background-color: yellow;
+    border-radius: 35%;
+}
+
+md-toolbar {
+    margin-bottom: 15px;
 }
