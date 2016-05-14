@@ -4,10 +4,6 @@
 }
 
 .tile {
-<<<<<<< HEAD
-  background-color: yellow;
-  border-radius: 15px;
-=======
     background-color: yellow;
     border-radius: 35%;
     outline: none;
@@ -15,5 +11,4 @@
 
 md-toolbar {
     margin-bottom: 15px;
->>>>>>> af524417c2685768653d1abfdde1038f562e4f63
 }
