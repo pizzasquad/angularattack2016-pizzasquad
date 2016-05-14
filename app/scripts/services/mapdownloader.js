@@ -8,22 +8,12 @@
  * Service in the geeGeeApp.
  */
 angular.module('geeGeeApp')
-  .service('MapDownloader', function ($http, $q) {
-    
-    var PATH = '../../app/maps/';
+  .service('MapDownloader', function ($http) {
+    const PATH = '/maps/';
 
     this.downloadMap = function (mapName) {
-    	$http.get(mapName).then(handleSuccess, handleError);
+        console.debug('[DOWNLOADER] Loading map ' + mapName);
+    	return $http.get(PATH + mapName + '.json');
     };
-
-
-	// Private functions for handling http responses     
-    function handleSuccess(res) {
-        return res.data;
-    }
-
-    function handleError(res) {
-        return $q.reject(res.data);
-    }
 
   });
