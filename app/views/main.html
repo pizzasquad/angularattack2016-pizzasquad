@@ -9,7 +9,12 @@
 		  			<md-content layout="row" layout-padding>
 		  				<md-content flex>
 		  					<h1 class="md-display-2">Choose the tile</h1>
-		  					<p>Choose the first tile you want to fill</p>
+
+		  					<md-content>
+		  						Animazione con icone selezionabili
+		  					</md-content>
+
+		  					<p>Choose the first tile you want to fill. You can start every where!</p>
 		  				</md-content>
 		  				<md-content layout="column" layout-align="center center">
 		  					<md-button ng-click="nextTab()" class="md-fab md-primary">
@@ -31,6 +36,11 @@
 		  				</md-content>
 		  				<md-content flex>
 		  					<h1 class="md-display-2">Fill your tile</h1>
+		  					
+		  					<md-content>
+		  						Animazione con la selezione di una tile
+		  					</md-content>
+
 		  					<p>Fill the selected tile with a click</p>
 		  				</md-content>
 		  				<md-content layout="column" layout-align="center center">
@@ -53,7 +63,15 @@
 		  				</md-content>
 		  				<md-content>
 		  					<h1 class="md-display-2">Complete</h1>
+
+		  					<md-content>
+		  						Animazione livello completato
+		  					</md-content>
+
 		  					<p>Complete the figure and go to the next level!</p>
+		  					<md-content layout="row" layout-align="center ">
+		  						<md-button ng-click="goToMap('map_01')" class="md-primary md-raised">Play!</md-button>
+		  					</md-content>
 		  				</md-content>
 		  			</md-content>	
 		  		</md-content>
