@@ -8,10 +8,7 @@
  * Controller of the geeGeeApp
  */
 angular.module('geeGeeApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', ['Game', function (Game) {
+    this.map = Game.getMap();
+    console.log(this.map);
+  }]);
