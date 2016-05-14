@@ -73,10 +73,7 @@ angular.module('geeGeeApp')
     */
     game.isGameOver = function () {
         
-        // Check if there is no one tile left to fill
-        if (this.tileLeft <= 0) {
-            return true;
-        }
+        return this.tileLeft > 0 && this.availableTiles > 0;
     };
 
     /**
@@ -118,6 +115,8 @@ angular.module('geeGeeApp')
     game._updateAvailableTile = function (lastSelectedX, lastSelectedY) {
         
         // Clear the map, removing all the selectable tiles
+        this.availableTiles = 0;
+        this.tileLeft = 0;
         for (var i in this.map) {
             var row = this.map[i];
             for (var j = 0;j < row.length;j++) {
@@ -141,6 +140,11 @@ angular.module('geeGeeApp')
                     // Switch state of the tile
                     if (row[j] == TILE.TO_FILL || row[j] == TILE.TO_NOT_FILL) {
                         row[j] = row[j] == TILE.TO_FILL ? TILE.SELECTABLE : TILE.SELECTABLE_TO_NOT_FILL;
+
+                        if (row[j] == TILE.SELECTABLE) {
+                            this.tileLeft++;
+                        }
+                        this.availableTiles++;
                     }
                 }
             }
