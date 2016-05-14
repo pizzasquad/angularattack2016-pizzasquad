@@ -39,11 +39,27 @@ angular.module('geeGeeApp')
      * @ngdoc method
      * @name loadMap
      * @description 
+     * @param mapData map object downloaded with MapDownloader service
      * Load the map from the static file
     */
-    game.loadMap = function () {
-      // TODO: decidere se caricare la mappa qui dentro, passando il nome come argomento o se ricevere direttamente
-      // l'oggetto già caricato
+    game.loadMap = function (mapData) {
+        // Create map matrix
+        this.map = new Array(mapData.width);
+        for (var i = 0; i < mapData.width; i++){
+            this.map[i] = new Array(mapData.height);
+        }
+
+        // Initialize matrix
+        for (var i = 0; i < mapData.width; i++){
+            for (var j = 0; j < mapData.height; j++){
+                this.map[i][j] = TILE.TO_NOT_FILL;
+            }
+        }
+
+        // Load map data in to matrix
+        for (var i = 0; i < mapData.mapTiles.length; i++){
+            this.map[mapData.mapTiles.x][mapData.mapTiles.y] = TILE.TO_FILL;
+        }
     };
 
     /**
@@ -73,10 +89,7 @@ angular.module('geeGeeApp')
     */
     game.isGameOver = function () {
         
-        // Check if there is no one tile left to fill
-        if (this.tileLeft <= 0) {
-            return true;
-        }
+        return this.tileLeft > 0 && this.availableTiles > 0;
     };
 
     /**
@@ -118,7 +131,9 @@ angular.module('geeGeeApp')
     game._updateAvailableTile = function (lastSelectedX, lastSelectedY) {
         
         // Clear the map, removing all the selectable tiles
-        for (var i = 0;i < this.map.length;i++) {
+        this.availableTiles = 0;
+        this.tileLeft = 0;
+        for (var i in this.map) {
             var row = this.map[i];
             for (var j = 0;j < row.length;j++) {
                 
@@ -127,7 +142,29 @@ angular.module('geeGeeApp')
             }
         }
 
+        var minX = Math.min(0, lastselectedX - 2);
+        var maxX = Math.min(this.map.length, lastselectedX + 2);
+
+        var minY = Math.min(0, lastselectedY - 2);
+        var maxY = Math.min(this.map.length, lastselectedX + 2);        
+
         // Now find the new selectable tiles and update them
+        for (var i = minX;i < maxX;i++) {
+            var row = this.map[i];
+            for (var j = minY;j < maxY;j++) {
+                if (j != 0 && i != o && i % 2 != 0 && j % 2 != 0) {
+                    // Switch state of the tile
+                    if (row[j] == TILE.TO_FILL || row[j] == TILE.TO_NOT_FILL) {
+                        row[j] = row[j] == TILE.TO_FILL ? TILE.SELECTABLE : TILE.SELECTABLE_TO_NOT_FILL;
+
+                        if (row[j] == TILE.SELECTABLE) {
+                            this.tileLeft++;
+                        }
+                        this.availableTiles++;
+                    }
+                }
+            }
+        }
     }
 
     return game;
