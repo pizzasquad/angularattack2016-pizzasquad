@@ -9,7 +9,7 @@
  */
 angular.module('geeGeeApp')
   .factory('Game', function (Point, TILE) {
-    
+
     var game = function () {
       this.reset();
     };
@@ -17,11 +17,11 @@ angular.module('geeGeeApp')
     /**
      * @ngdoc method
      * @name reset
-     * @description 
+     * @description
      * Reset the game to reuse this object
     */
     game.reset = function () {
-      
+
       // Create a new point object
       this.points = new Point();
 
@@ -38,7 +38,7 @@ angular.module('geeGeeApp')
     /**
      * @ngdoc method
      * @name loadMap
-     * @description 
+     * @description
      * @param mapData map object downloaded with MapDownloader service
      * Load the map from the static file
     */
@@ -47,23 +47,23 @@ angular.module('geeGeeApp')
         this.map = new Array(mapData.height);
 
         // Initialize matrix
-        for (i = 0; i < mapData.height; i++){
+        for (var i = 0; i < mapData.height; i++){
             this.map[i] = new Array(mapData.width);
             for (var j = 0; j < mapData.width; j++){
                 this.map[i][j] = TILE.TO_NOT_FILL;
             }
         }
-
         // Load map data in to matrix
-        for (i = 0; i < mapData.mapTiles.length; i++){
-            this.map[mapData.mapTiles.y][mapData.mapTiles.x] = TILE.TO_FILL;
+        for (var i = 0; i < mapData.mapTiles.length; i++){
+            this.map[mapData.mapTiles[i].y][mapData.mapTiles[i].x] = TILE.TO_FILL;
         }
+        console.log(this.map);
     };
 
     /**
      * @ngdoc method
      * @name getMap
-     * @description 
+     * @description
      * Return the map of the game, to draw it
     */
     game.getMap = function () {
@@ -73,7 +73,7 @@ angular.module('geeGeeApp')
     /**
      * @ngdoc method
      * @name getPoinst
-     * @description 
+     * @description
      * Return the point oobject of this game
     */
     game.getPoints = function () {
@@ -83,10 +83,10 @@ angular.module('geeGeeApp')
     /**
      * @ngdoc method
      * @name isGameOver
-     * @description 
+     * @description
     */
     game.isGameOver = function () {
-        
+
         return this.tileLeft > 0 && this.availableTiles > 0;
     };
 
@@ -94,7 +94,7 @@ angular.module('geeGeeApp')
      * @ngdoc method
      * @name isSelectable
      * @description
-     * Return true if the tile is selectable (TO_FILL or TO_NOT_FILL) 
+     * Return true if the tile is selectable (TO_FILL or TO_NOT_FILL)
     */
     game.isSelectable = function (x, y) {
         return this.map[x][y] == TILE.SELECTABLE || this.map[x][y] == TILE.SELECTABLE_TO_NOT_FILL;
@@ -104,7 +104,7 @@ angular.module('geeGeeApp')
      * @ngdoc method
      * @name select
      * @description
-     * Select the specified tile and update the map with the new available tile 
+     * Select the specified tile and update the map with the new available tile
     */
     game.select = function (x, y) {
 
@@ -136,7 +136,7 @@ angular.module('geeGeeApp')
 
             var row = this.map[i];
             for (var j = 0;j < row.length;j++) {
-                
+
                 // Return to the not selectable state
                 row[j] = row[j] == TILE.SELECTABLE ? TILE.TO_FILL : TILE.TO_NOT_FILL;
             }
@@ -146,7 +146,7 @@ angular.module('geeGeeApp')
         var maxX = Math.min(this.map.length, lastselectedX + 2);
 
         var minY = Math.min(0, lastselectedY - 2);
-        var maxY = Math.min(this.map.length, lastselectedX + 2);        
+        var maxY = Math.min(this.map.length, lastselectedX + 2);
 
         // Now find the new selectable tiles and update them
         for (i = minX; i < maxX; i++) {

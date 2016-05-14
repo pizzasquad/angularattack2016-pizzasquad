@@ -8,7 +8,7 @@
  * Controller of the geeGeeApp
  */
 angular.module('geeGeeApp')
-    .controller('LevelCtrl', function ($scope, Point, $routeParams, $location, MapDownloader) {
+    .controller('LevelCtrl', function ($scope, Point, $routeParams, $location, MapDownloader, Game) {
         if (!$routeParams.mapName)
             $location.url('/');
 
@@ -16,6 +16,8 @@ angular.module('geeGeeApp')
         MapDownloader.downloadMap($scope.mapName).then(
             function (response) {
                 console.log(response.data);
+                Game.loadMap(response.data);
+                console.log("Map " + Game.getMap());
 
             }, function () {
                 console.warn(arguments);
