@@ -1,23 +1,26 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<md-toolbar layout-align="center center">
+    <div class="md-toolbar-tools">
+      <h2>
+        <span>NameOfTheApp</span>
+      </h2>
+      <span flex></span>
+      <span>  {{points}} pts </span>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="About">
+        <md-icon class="material-icons">face</md-icon>
+      </md-button>
+    </div>
+</md-toolbar>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+<md-content>
+    <md-grid-list
+          md-cols="10"
+          md-row-height="1:1"
+          md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px"
+          class="grid-container">
+        <md-grid-tile
+            ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
+            class="tile">
+        </md-grid-tile>
+      </md-grid-list>
+</md-content>
