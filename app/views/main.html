@@ -1,4 +1,67 @@
-<md-content>
+<md-content layout="row" flex layout-align="center center">
+	<md-card flex="60">
+		<md-tabs md-dynamic-height md-selected="selectedTab" md-border-bottom md-autoselect md-no-pagination="true">
+		<!--<md-tabs md-dynamic-height md-border-bottom>-->
+		  	
+		  	<!-- Choose tab -->
+		  	<md-tab label="Choose">
+		  		<md-content class="md-padding">
+		  			<md-content layout="row" layout-padding>
+		  				<md-content flex>
+		  					<h1 class="md-display-2">Choose the tile</h1>
+		  					<p>Choose the first tile you want to fill</p>
+		  				</md-content>
+		  				<md-content layout="column" layout-align="center center">
+		  					<md-button ng-click="nextTab()" class="md-fab md-primary">
+		  						<md-icon>arrow_forward</md-icon>
+		  					</md-button>
+		  				</md-content>
+		  			</md-content>	
+		  		</md-content>
+		  	</md-tab>
+
+		  	<!-- Fill tab -->
+		  	<md-tab label="Fill">
+		  		<md-content class="md-padding">
+		  			<md-content layout="row" layout-padding>
+		  				<md-content layout="column" layout-align="center center">
+		  					<md-button ng-click="previousTab()" class="md-fab md-primary">
+		  						<md-icon>arrow_back</md-icon>
+		  					</md-button>
+		  				</md-content>
+		  				<md-content flex>
+		  					<h1 class="md-display-2">Fill your tile</h1>
+		  					<p>Fill the selected tile with a click</p>
+		  				</md-content>
+		  				<md-content layout="column" layout-align="center center">
+		  					<md-button ng-click="nextTab()" class="md-fab md-primary">
+		  						<md-icon>arrow_forward</md-icon>
+		  					</md-button>
+		  				</md-content>
+		  			</md-content>		  			
+		  		</md-content>
+		  	</md-tab>
+
+		  	<!-- Complete and continue -->
+		  	<md-tab label="Complete">
+		  		<md-content class="md-padding">
+		  			<md-content layout="row" layout-padding>
+		  				<md-content layout="column" layout-align="center center">
+		  					<md-button ng-click="previousTab()" class="md-fab md-primary">
+		  						<md-icon>arrow_back</md-icon>
+		  					</md-button>
+		  				</md-content>
+		  				<md-content>
+		  					<h1 class="md-display-2">Complete</h1>
+		  					<p>Complete the figure and go to the next level!</p>
+		  				</md-content>
+		  			</md-content>	
+		  		</md-content>
+		  	</md-tab>
+		</md-tabs>
+	</md-card>
+</md-content>
+<!--
     Qui dovremmo mettere le istruzioni e il benvenuto...<br>
     Link di test: <a style="text-decoration: underline;" ng-click="goToMap('map_01')">Vai alla prima mappa</a>
-</md-content>
+    -->
