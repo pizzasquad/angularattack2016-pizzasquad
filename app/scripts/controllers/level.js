@@ -15,10 +15,8 @@ angular.module('geeGeeApp')
         $scope.mapName = $routeParams.mapName;
         MapDownloader.downloadMap($scope.mapName).then(
             function (response) {
-                console.log(response.data);
                 Game.loadMap(response.data);
-                console.log("Map " + Game.getMap());
-
+                $scope.map = Game.getMap();
             }, function () {
                 console.warn(arguments);
             });

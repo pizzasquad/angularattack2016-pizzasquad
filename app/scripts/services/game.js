@@ -57,7 +57,6 @@ angular.module('geeGeeApp')
         for (var i = 0; i < mapData.mapTiles.length; i++){
             this.map[mapData.mapTiles[i].y][mapData.mapTiles[i].x] = TILE.TO_FILL;
         }
-        console.log(this.map);
     };
 
     /**
