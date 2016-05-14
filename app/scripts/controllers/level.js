@@ -24,8 +24,6 @@ angular.module('geeGeeApp')
 
                 $scope.width = response.data.width;
                 $scope.height = response.data.height;
-
-                console.log($scope.map);
             }, function () {
                 console.warn(arguments);
                 $location.url('/');

@@ -32,6 +32,6 @@ md-toolbar {
     background-color: darkgreen;
 }
 
-.tile > img {
+.tile img {
     border-radius: 35%;
 }
