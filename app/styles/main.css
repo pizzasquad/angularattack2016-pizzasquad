@@ -6,6 +6,7 @@
 .tile {
     background-color: yellow;
     border-radius: 35%;
+    outline: none;
 }
 
 md-toolbar {

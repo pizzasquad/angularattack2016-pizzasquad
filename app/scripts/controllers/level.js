@@ -14,10 +14,14 @@ angular.module('geeGeeApp')
 
         $scope.mapName = $routeParams.mapName;
         MapDownloader.downloadMap($scope.mapName).then(
-           function (response) {
-               console.log(response.data);
+            function (response) {
+                console.log(response.data);
 
-        }, function () {
+            }, function () {
                 console.warn(arguments);
-        });
+            });
+
+        $scope.addPoints = function (nPoints) {
+            Point.addPoints(nPoints);
+        }
     });
