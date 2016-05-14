@@ -8,6 +8,7 @@
  * Controller of the geeGeeApp
  */
 angular.module('geeGeeApp')
+
     .controller('MainCtrl', function ($scope, Point, $location) {
         
     	$scope.selectedTab = 0;

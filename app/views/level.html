@@ -1,13 +1,16 @@
 <h1 style="text-align: center;">Mappa: {{mapName}}</h1>
 
 <md-grid-list
-        md-cols="10"
+        ng-if="map != null"
+        md-cols="{{width}}"
         md-row-height="1:1"
-        md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px"
+        md-gutter="4px"
         class="grid-container">
-    <md-grid-tile
-            ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
-            ng-click="addPoints(i)"
-            class="tile">
-    </md-grid-tile>
+        <md-grid-tile
+                ng-repeat="tile in getNumTiles(map) track by $index"
+                ng-click="clickedTile(tile)"
+                ng-class="'tile ' + tile.type + ' ' + (tile.filled ? 'FILLED' : '') + ' ' + (tile.selectable ? 'SELECTABLE' : '')">
+            <img ng-src="images/pizza_shadow_10.png" layout-fill>
+        </md-grid-tile>
+    <!-- map è formata da array[array[], array[], ...] quindi bisogna sistemare ng-repeat-->
 </md-grid-list>
