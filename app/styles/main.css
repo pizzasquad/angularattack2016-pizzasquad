@@ -7,6 +7,7 @@
     background-color: yellow;
     border-radius: 35%;
     outline: none;
+    cursor: pointer;
 }
 
 md-toolbar {
