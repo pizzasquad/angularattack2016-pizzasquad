@@ -1,4 +1,10 @@
+/node_modules
+/dist
+/.tmp
+/.sass-cache
+/bower_components
 node_modules
 npm-debug.log
 src/app/**/*.js
 src/app/**/*.js.map
+.DS_Store
