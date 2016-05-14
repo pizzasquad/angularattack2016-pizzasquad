@@ -21,7 +21,18 @@ angular.module('geeGeeApp')
      * Reset the game to reuse this object
     */
     game.reset = function () {
+      
+      // Create a new point object
       this.points = new Point();
+
+      // This map will be crated by the loadMap method
+      this.map = undefined;
+
+      // Counter of title to fill left
+      this.tileLeft = 0;
+
+      // counter of available tile
+      this.availbleTiles = 0;
     };
 
     /**
@@ -58,8 +69,18 @@ angular.module('geeGeeApp')
      * Return the map of the game, to draw it
     */
     game.getMap = function () {
-
+        return this.map;
     };
+
+    /**
+     * @ngdoc method
+     * @name getPoinst
+     * @description 
+     * Return the point oobject of this game
+    */
+    game.getPoints = function () {
+        return this.points;
+    }
 
     /**
      * @ngdoc method
@@ -67,19 +88,84 @@ angular.module('geeGeeApp')
      * @description 
     */
     game.isGameOver = function () {
-
+        
+        return this.tileLeft > 0 && this.availableTiles > 0;
     };
 
     /**
      * @ngdoc method
      * @name isSelectable
-     * @description 
+     * @description
+     * Return true if the tile is selectable (TO_FILL or TO_NOT_FILL) 
     */
     game.isSelectable = function (x, y) {
-
+        return this.map[x][y] == TILE.SELECTABLE || this.map[x][y] == TILE.SELECTABLE_TO_NOT_FILL;
     };
 
-    // TODO: implements all the other methods
+    /**
+     * @ngdoc method
+     * @name select
+     * @description
+     * Select the specified tile and update the map with the new available tile 
+    */
+    game.select = function (x, y) {
+
+        // Change the flag of the tile
+        this.map[x][y] = this.map[x][y] == TILE.SELECTABLE ? TILE.FILLED : TILE.FILLED_WRONG;
+
+        // Update the counter of the tile to fill left
+        if (this.map[x][y] == TILE.FILLED) {
+            this.tileLeft--;
+        }
+
+        // Update the map with the new available tiles
+        this._updateAvailableTile();
+    };
+
+    /**
+     * @ngdoc method
+     * @name _updatrAvailableTile
+     * @description
+     * Update the map, changing the tile state to match the new game state.
+    */
+    game._updateAvailableTile = function (lastSelectedX, lastSelectedY) {
+        
+        // Clear the map, removing all the selectable tiles
+        this.availableTiles = 0;
+        this.tileLeft = 0;
+        for (var i in this.map) {
+            var row = this.map[i];
+            for (var j = 0;j < row.length;j++) {
+                
+                // Return to the not selectable state
+                row[j] = row[j] == TILE.SELECTABLE ? TILE.TO_FILL : TILE.TO_NOT_FILL;
+            }
+        }
+
+        var minX = Math.min(0, lastselectedX - 2);
+        var maxX = Math.min(this.map.length, lastselectedX + 2);
+
+        var minY = Math.min(0, lastselectedY - 2);
+        var maxY = Math.min(this.map.length, lastselectedX + 2);        
+
+        // Now find the new selectable tiles and update them
+        for (var i = minX;i < maxX;i++) {
+            var row = this.map[i];
+            for (var j = minY;j < maxY;j++) {
+                if (j != 0 && i != o && i % 2 != 0 && j % 2 != 0) {
+                    // Switch state of the tile
+                    if (row[j] == TILE.TO_FILL || row[j] == TILE.TO_NOT_FILL) {
+                        row[j] = row[j] == TILE.TO_FILL ? TILE.SELECTABLE : TILE.SELECTABLE_TO_NOT_FILL;
+
+                        if (row[j] == TILE.SELECTABLE) {
+                            this.tileLeft++;
+                        }
+                        this.availableTiles++;
+                    }
+                }
+            }
+        }
+    }
 
     return game;
 
