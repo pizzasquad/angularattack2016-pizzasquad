@@ -44,21 +44,19 @@ angular.module('geeGeeApp')
     */
     game.loadMap = function (mapData) {
         // Create map matrix
-        this.map = new Array(mapData.width);
-        for (var i = 0; i < mapData.width; i++){
-            this.map[i] = new Array(mapData.height);
-        }
+        this.map = new Array(mapData.height);
 
         // Initialize matrix
-        for (var i = 0; i < mapData.width; i++){
-            for (var j = 0; j < mapData.height; j++){
+        for (i = 0; i < mapData.height; i++){
+            this.map[i] = new Array(mapData.width);
+            for (var j = 0; j < mapData.width; j++){
                 this.map[i][j] = TILE.TO_NOT_FILL;
             }
         }
 
         // Load map data in to matrix
-        for (var i = 0; i < mapData.mapTiles.length; i++){
-            this.map[mapData.mapTiles.x][mapData.mapTiles.y] = TILE.TO_FILL;
+        for (i = 0; i < mapData.mapTiles.length; i++){
+            this.map[mapData.mapTiles.y][mapData.mapTiles.x] = TILE.TO_FILL;
         }
     };
 
@@ -80,7 +78,7 @@ angular.module('geeGeeApp')
     */
     game.getPoints = function () {
         return this.points;
-    }
+    };
 
     /**
      * @ngdoc method
@@ -129,11 +127,13 @@ angular.module('geeGeeApp')
      * Update the map, changing the tile state to match the new game state.
     */
     game._updateAvailableTile = function (lastSelectedX, lastSelectedY) {
-        
         // Clear the map, removing all the selectable tiles
         this.availableTiles = 0;
         this.tileLeft = 0;
         for (var i in this.map) {
+            if (!this.map.hasOwnProperty(i))
+                continue;
+
             var row = this.map[i];
             for (var j = 0;j < row.length;j++) {
                 
@@ -149,9 +149,9 @@ angular.module('geeGeeApp')
         var maxY = Math.min(this.map.length, lastselectedX + 2);        
 
         // Now find the new selectable tiles and update them
-        for (var i = minX;i < maxX;i++) {
-            var row = this.map[i];
-            for (var j = minY;j < maxY;j++) {
+        for (i = minX; i < maxX; i++) {
+            row = this.map[i];
+            for (j = minY; j < maxY; j++) {
                 if (j != 0 && i != o && i % 2 != 0 && j % 2 != 0) {
                     // Switch state of the tile
                     if (row[j] == TILE.TO_FILL || row[j] == TILE.TO_NOT_FILL) {
@@ -165,7 +165,7 @@ angular.module('geeGeeApp')
                 }
             }
         }
-    }
+    };
 
     return game;
 

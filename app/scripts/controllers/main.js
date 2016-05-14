@@ -8,7 +8,9 @@
  * Controller of the geeGeeApp
  */
 angular.module('geeGeeApp')
-  .controller('MainCtrl', ['Game', function (Game) {
-    this.map = Game.getMap();
-    console.log(this.map);
-  }]);
+
+    .controller('MainCtrl', function ($scope, Point, $location) {
+        $scope.goToMap = function (mapName) {
+            $location.url('/level/' + mapName);
+        }
+    });
