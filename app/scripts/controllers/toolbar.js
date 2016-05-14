@@ -9,6 +9,5 @@
  */
 angular.module('geeGeeApp')
     .controller('ToolbarCtrl', function ($scope, Game) {
-        console.log(Game.getPoints());
         $scope.pointsHandler = Game.getPoints();
     });
