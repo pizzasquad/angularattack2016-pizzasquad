@@ -8,7 +8,7 @@
  * Factory in the geeGeeApp.
  */
 angular.module('geeGeeApp')
-  .factory('Game', function (Point) {
+  .factory('Game', function (Point, TILE) {
     
     var game = function () {
       this.reset();
@@ -21,7 +21,18 @@ angular.module('geeGeeApp')
      * Reset the game to reuse this object
     */
     game.reset = function () {
+      
+      // Create a new point object
       this.points = new Point();
+
+      // This map will be crated by the loadMap method
+      this.map = undefined;
+
+      // Counter of title to fill left
+      this.tileLeft = 0;
+
+      // counter of available tile
+      this.availbleTiles = 0;
     };
 
     /**
@@ -42,8 +53,18 @@ angular.module('geeGeeApp')
      * Return the map of the game, to draw it
     */
     game.getMap = function () {
-
+        return this.map;
     };
+
+    /**
+     * @ngdoc method
+     * @name getPoinst
+     * @description 
+     * Return the point oobject of this game
+    */
+    game.getPoints = function () {
+        return this.points;
+    }
 
     /**
      * @ngdoc method
@@ -51,7 +72,11 @@ angular.module('geeGeeApp')
      * @description 
     */
     game.isGameOver = function () {
-
+        
+        // Check if there is no one tile left to fill
+        if (this.tileLeft <= 0) {
+            return true;
+        }
     };
 
     /**
@@ -60,10 +85,38 @@ angular.module('geeGeeApp')
      * @description 
     */
     game.isSelectable = function (x, y) {
-
+        return this.map[x][y] == TILE.TO_FILL || this.map[x][y] == TILE.TO_NOT_FILL;
     };
 
-    // TODO: implements all the other methods
+    /**
+     * @ngdoc method
+     * @name select
+     * @description
+     * Select the specified tile and update the map with the new available tile 
+    */
+    game.select = function (x, y) {
+
+        // Change the flag of the tile
+        this.map[x][y] = this.map[x][y] == TILE.TO_FILL ? TILE.FILLED : TILE.FILLED_WRONG;
+
+        // Update the counter of the tile to fill left
+        if (this.map[x][y] == TILE.FILLED) {
+            this.tileLeft--;
+        }
+
+        // Update the map with the new available tiles
+        this._updateAvailableTile();
+    };
+
+    /**
+     * @ngdoc method
+     * @name _updatrAvailableTile
+     * @description
+     * Update the map, changing the tile state to match the new game state.
+    */
+    game._updateAvailableTile = function () {
+
+    }
 
     return game;
 
