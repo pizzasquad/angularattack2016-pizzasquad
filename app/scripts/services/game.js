@@ -39,11 +39,27 @@ angular.module('geeGeeApp')
      * @ngdoc method
      * @name loadMap
      * @description 
+     * @param mapData map object downloaded with MapDownloader service
      * Load the map from the static file
     */
-    game.loadMap = function () {
-      // TODO: decidere se caricare la mappa qui dentro, passando il nome come argomento o se ricevere direttamente
-      // l'oggetto già caricato
+    game.loadMap = function (mapData) {
+        // Create map matrix
+        this.map = new Array(mapData.width);
+        for (var i = 0; i < mapData.width; i++){
+            this.map[i] = new Array(mapData.height);
+        }
+
+        // Initialize matrix
+        for (var i = 0; i < mapData.width; i++){
+            for (var j = 0; j < mapData.height; j++){
+                this.map[i][j] = TILE.TO_NOT_FILL;
+            }
+        }
+
+        // Load map data in to matrix
+        for (var i = 0; i < mapData.mapTiles.length; i++){
+            this.map[mapData.mapTiles.x][mapData.mapTiles.y] = TILE.TO_FILL;
+        }
     };
 
     /**
