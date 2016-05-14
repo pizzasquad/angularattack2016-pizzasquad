@@ -1,108 +1,103 @@
 <md-content layout="row" flex layout-align="center center">
-	<md-card flex="60">
+	
+	<!-- Previous instruction tab button -->
+	<md-content layout="column" layout-align="center center" ng-if="selectedTab > 0">
+		<md-button ng-click="previousTab()" class="md-fab md-primary">
+			<md-icon>arrow_back</md-icon>
+	  	</md-button>
+	</md-content>
+
+	<!-- Current instruction tab -->
+	<md-card flex="60" >
+		
 		<md-tabs md-dynamic-height md-selected="selectedTab" md-border-bottom md-autoselect md-no-pagination="true">
-		<!--<md-tabs md-dynamic-height md-border-bottom>-->
 		  	
 		  	<!-- Choose tab -->
 		  	<md-tab label="Choose">
-		  		<md-content class="md-padding">
-		  			<md-content layout="row" layout-padding>
-		  				<md-content flex>
-		  					<h1 class="md-display-2">Choose the tile</h1>
+		  		<md-content layout="column" layout-padding>
+			  		<!-- Title -->
+			  		<h1 class="md-display-2">Choose the tile</h1>
 
-		  					<md-content layout="row" layout-align="center">
-			  					<md-content layout="column">
-			  						<md-content layout="row">
-				  						<img class="small-pizza choose-pizza" src="images/pizza_shadow_10.png">
-				  						<img class="small-pizza choose-pizza" style="animation-delay: 2s;" src="images/pizza_shadow_10.png">
-			  						</md-content>
-			  						<md-content layout="row">
-				  						<img class="small-pizza choose-pizza" style="animation-delay: 4s;" src="images/pizza_shadow_10.png">
-				  						<img class="small-pizza choose-pizza" style="animation-delay: 6s;" src="images/pizza_shadow_10.png">
-			  						</md-content>
-			  					</md-content>
-		  					</md-content>
+			  		<!-- Animation -->
+			  		<md-content layout="row" layout-align="center">
+				  		<md-content layout="column">
+				  			<md-content layout="row">
+								<img class="small-pizza choose-pizza" src="images/pizza_shadow_10.png">
+								<img class="small-pizza choose-pizza" style="animation-delay: 2s;" src="images/pizza_shadow_10.png">
+				  			</md-content>
+				  			<md-content layout="row">
+								<img class="small-pizza choose-pizza" style="animation-delay: 4s;" src="images/pizza_shadow_10.png">
+								<img class="small-pizza choose-pizza" style="animation-delay: 6s;" src="images/pizza_shadow_10.png">
+				  			</md-content>
+				  		</md-content>
+			  		</md-content>
 
-		  					<p>Choose the first tile you want to fill. You can start every where!</p>
-		  				</md-content>
-		  				<md-content layout="column" layout-align="center center">
-		  					<md-button ng-click="nextTab()" class="md-fab md-primary">
-		  						<md-icon>arrow_forward</md-icon>
-		  					</md-button>
-		  				</md-content>
-		  			</md-content>	
-		  		</md-content>
+			  		<!-- Description -->
+					<p>Choose the first tile you want to fill. You can start every where!</p>
+				</md-content>
 		  	</md-tab>
 
 		  	<!-- Fill tab -->
 		  	<md-tab label="Fill">
-		  		<md-content class="md-padding">
-		  			<md-content layout="row" layout-padding>
-		  				<md-content layout="column" layout-align="center center">
-		  					<md-button ng-click="previousTab()" class="md-fab md-primary">
-		  						<md-icon>arrow_back</md-icon>
-		  					</md-button>
-		  				</md-content>
-		  				<md-content flex>
-		  					<h1 class="md-display-2">Fill your tile</h1>
-		  					
-		  					<md-content layout="row" layout-align="center">
-			  					<md-content layout="column">
-			  						<md-content layout="row">
-				  						<img class="small-pizza" src="images/pizza_shadow_10.png">
-				  						<img class="small-pizza" src="images/pizza_shadow_10.png">
-			  						</md-content>
-			  						<md-content layout="row">
-				  						<img class="small-pizza" src="images/pizza_shadow_10.png">
-				  						<img class="small-pizza" src="images/pizza_shadow_10.png">
-			  						</md-content>
-			  					</md-content>
-		  					</md-content>
+		  		<md-content layout="column" layout-padding>
+		  			
+		  			<!-- Title -->
+		  			<h1 class="md-display-2">Fill your tile</h1>
+		  			
+		  			<!-- Animation -->
+		  			<md-content layout="row" layout-align="center">
+			  			<md-content layout="column">
+			  				<md-content layout="row">
+				  				<img class="small-pizza" src="images/pizza_shadow_10.png">
+				  				<img class="small-pizza" src="images/pizza_shadow_10.png">
+			  				</md-content>
+			  				<md-content layout="row">
+				  				<img class="small-pizza" src="images/pizza_shadow_10.png">
+				  				<img class="small-pizza" src="images/pizza_shadow_10.png">
+			  				</md-content>
+			  			</md-content>
+		  			</md-content>
 
-		  					<p>Fill the selected tile with a click. When you choose a tile, the near tiles will change their color.</p>
-		  				</md-content>
-		  				<md-content layout="column" layout-align="center center">
-		  					<md-button ng-click="nextTab()" class="md-fab md-primary">
-		  						<md-icon>arrow_forward</md-icon>
-		  					</md-button>
-		  				</md-content>
-		  			</md-content>		  			
+		  			<!-- Description -->
+		  			<p>Fill the selected tile with a click. When you choose a tile, the near tiles will change their color.</p>
 		  		</md-content>
 		  	</md-tab>
 
 		  	<!-- Complete and continue -->
 		  	<md-tab label="Complete">
-		  		<md-content class="md-padding">
-		  			<md-content layout="row" layout-padding>
-		  				<md-content layout="column" layout-align="center center">
-		  					<md-button ng-click="previousTab()" class="md-fab md-primary">
-		  						<md-icon>arrow_back</md-icon>
-		  					</md-button>
-		  				</md-content>
-		  				<md-content>
-		  					<h1 class="md-display-2">Complete</h1>
+		  		<md-content layout="column" layout-padding>
 
-		  					<md-content layout="row" layout-align="center">
-			  					<md-content layout="column">
-			  						<md-content layout="row">
-				  						<img class="small-pizza" src="images/pizza_shadow_10.png">
-				  						<img class="small-pizza" src="images/pizza_shadow_10.png">
-			  						</md-content>
-			  						<md-content layout="row">
-				  						<img class="small-pizza" src="images/pizza_shadow_10.png">
-				  						<img class="small-pizza" src="images/pizza_shadow_10.png">
-			  						</md-content>
-			  					</md-content>
-		  					</md-content>
+		  			<!-- title -->
+		  			<h1 class="md-display-2">Complete</h1>
 
-		  					<p>Complete the figure and go to the next level!</p>
-		  					<md-content layout="row" layout-align="center ">
-		  						<md-button ng-click="goToMap('map_01')" class="md-primary md-raised">Play!</md-button>
-		  					</md-content>
-		  				</md-content>
-		  			</md-content>	
+		  			<!-- Animation -->
+  					<md-content layout="row" layout-align="center">
+			  			<md-content layout="column">
+			  				<md-content layout="row">
+				  				<img class="small-pizza" src="images/pizza_shadow_10.png">
+				  				<img class="small-pizza" src="images/pizza_shadow_10.png">
+			  				</md-content>
+			  				<md-content layout="row">
+				  				<img class="small-pizza" src="images/pizza_shadow_10.png">
+				  				<img class="small-pizza" src="images/pizza_shadow_10.png">
+			  				</md-content>
+			  			</md-content>
+		  			</md-content>
+
+		  			<!-- Desctiption -->
+		  			<p>Complete the figure and go to the next level!</p>
+		  			<md-content layout="row" layout-align="center ">
+		  				<md-button ng-click="goToMap('map_01')" class="md-primary md-raised">Play!</md-button>
+		  			</md-content>
 		  		</md-content>
 		  	</md-tab>
 		</md-tabs>
 	</md-card>
+
+	<!-- Next instruction tab button -->
+	<md-content layout="column" layout-align="center center" ng-if="selectedTab < 2">
+		<md-button ng-click="nextTab()" class="md-fab md-primary">
+			<md-icon>arrow_forward</md-icon>
+	  	</md-button>
+	</md-content>
 </md-content>
