@@ -8,21 +8,26 @@
  * Factory in the geeGeeApp.
  */
 angular.module('geeGeeApp')
-  .factory('Point', function () {
+    .factory('Point', function () {
 
-    var points = 0;
+        var points = 0;
 
-    return {
-      getPoints: function () {
-        return points;
-      },
+        return {
+            getPoints: function () {
+                return points;
+            },
 
-      addPoints: function (pointsToAdd) {
-        points += pointsToAdd;
-      },
+            addPoints: function (pointsToAdd) {
+                points += pointsToAdd;
+            },
 
-      remove: function (pointsToRemove) {
-        points -= pointsToRemove;
-      }
-    };
-  });
+            // FIXME: @Deprecated
+            remove: function (pointsToRemove) {
+                this.removePoints(pointsToRemove);
+            },
+
+            removePoints: function (pointsToRemove) {
+                points -= pointsToRemove;
+            }
+        };
+    });

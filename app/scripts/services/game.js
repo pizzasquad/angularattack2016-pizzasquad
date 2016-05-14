@@ -50,12 +50,20 @@ angular.module('geeGeeApp')
         for (var i = 0; i < mapData.height; i++){
             this.map[i] = new Array(mapData.width);
             for (var j = 0; j < mapData.width; j++){
-                this.map[i][j] = TILE.TO_NOT_FILL;
+                this.map[i][j] = {
+                    type: TILE.TO_NOT_FILL,
+                    filled: false,
+                    selectable: true
+                };
             }
         }
         // Load map data in to matrix
         for (var i = 0; i < mapData.mapTiles.length; i++){
-            this.map[mapData.mapTiles[i].y][mapData.mapTiles[i].x] = TILE.TO_FILL;
+            this.map[mapData.mapTiles[i].y][mapData.mapTiles[i].x] = {
+                type: TILE.TO_FILL,
+                filled: false,
+                selectable: true
+            };
         }
     };
 
