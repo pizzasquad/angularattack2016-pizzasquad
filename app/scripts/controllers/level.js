@@ -8,7 +8,7 @@
  * Controller of the geeGeeApp
  */
 angular.module('geeGeeApp')
-    .controller('LevelCtrl', function ($scope, Point, $route, $routeParams, $location, $mdDialog, MapDownloader, Game) {
+    .controller('LevelCtrl', function ($scope, Point, $route, $routeParams, $location, $mdDialog, $timeout, MapDownloader, Game) {
         if (!$routeParams.mapName)
             $location.url('/');
 
@@ -62,6 +62,13 @@ angular.module('geeGeeApp')
 
             if (Game.isGameOver())
                 gameEnd($event);
+
+            if (Math.random() > 0.2) {
+                Game.generateBonus();
+                $timeout(function () {
+                    Game.clearBonus();
+                }, 5000);
+            }
         }
 
         /*
