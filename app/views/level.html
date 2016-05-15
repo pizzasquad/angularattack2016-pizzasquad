@@ -7,8 +7,8 @@
         md-gutter="4px"
         class="grid-container">
         <md-grid-tile
-                ng-repeat="tile in getNumTiles(map) track by $index"
-                ng-click="clickedTile(tile)"
+                ng-repeat="tile in getTiles(map) track by $index"
+                ng-click="onClickTile(tile)"
                 ng-class="'tile ' + tile.type + ' ' + (tile.filled ? 'FILLED' : '') + ' ' + (tile.selectable ? 'SELECTABLE' : '')">
             <img ng-src="images/pizza_shadow_10.png" layout-fill>
         </md-grid-tile>

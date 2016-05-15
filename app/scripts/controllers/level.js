@@ -12,6 +12,8 @@ angular.module('geeGeeApp')
         if (!$routeParams.mapName)
             $location.url('/');
 
+        Game.reset();
+
         $scope.map = null;
         $scope.width = 10;
         $scope.height = 10;
@@ -29,7 +31,7 @@ angular.module('geeGeeApp')
                 $location.url('/');
             });
 
-        $scope.getNumTiles = function (map) {
+        $scope.getTiles = function (map) {
             var ans = [];
             for (var lineNum in map) {
                 if (!map.hasOwnProperty(lineNum))
@@ -43,16 +45,10 @@ angular.module('geeGeeApp')
             return ans;
         };
 
-        $scope.clickedTile = function (tile) {
+        $scope.onClickTile = function (tile) {
             if (!tile.selectable)
                 return false;
 
-            if (tile.type === "TO_FILL")
-                Point.addPoints(10);
-            else
-                Point.removePoints(20);
-
-            tile.selectable = false;
-            tile.filled = true;
+            Game.select(tile.x, tile.y);
         }
     });
