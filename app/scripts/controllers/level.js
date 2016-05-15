@@ -64,9 +64,9 @@ angular.module('geeGeeApp')
                 gameEnd($event);
 
             if (Math.random() > 0.2) {
-                Game.generateBonus();
+                var bonusPoint = Game.generateBonus();
                 $timeout(function () {
-                    Game.clearBonus();
+                    Game.clearBonus(bonusPoint);
                 }, 5000);
             }
         }

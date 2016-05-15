@@ -76,7 +76,8 @@ angular.module('geeGeeApp')
                     filled: false,
                     selectable: true,
                     x: mapData.mapTiles[i].x,
-                    y: mapData.mapTiles[i].y
+                    y: mapData.mapTiles[i].y,
+                    bonus: 0
                 };
             }
 
@@ -194,6 +195,7 @@ angular.module('geeGeeApp')
             // Change the flag of the tile
             map[y][x].filled = true;
 
+            console.log(map[x][y]);
             points.addPoints(map[x][y].bonus);
             map[x][y].bonus = 0;
 
@@ -236,7 +238,7 @@ angular.module('geeGeeApp')
                     continue;
 
                 map[x][y].bonus = Math.random() > 0.5 ? 20 : 10;
-                return;
+                return { x: x, y: y };
             }
         };
 
@@ -246,16 +248,8 @@ angular.module('geeGeeApp')
          * @description
          * Clear all the bonus in the map
          */
-        this.clearBonus = function () {
-            for (var i in map) {
-                if (!map.hasOwnProperty(i))
-                    continue;
-
-                var tiles = map[i];
-                for (var j = 0; j < tiles.length; j++) {
-                    tiles[j].bonus = 0;
-                }
-            }
+        this.clearBonus = function (point) {
+            map[point.x][point.y].bonus = 0;
         };
 
         this.reset();
