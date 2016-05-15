@@ -59,3 +59,7 @@ md-content > h1.md-display-2 {
 .choosed-pizza img{
     display: none;
 }
+
+.authors > img{
+  cursor: pointer;
+}
