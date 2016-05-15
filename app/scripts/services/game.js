@@ -9,13 +9,7 @@
  */
 angular.module('geeGeeApp')
     .factory('Game', function (Point, TILE) {
-        /**
-         * @ngdoc method
-         * @name reset
-         * @description
-         * Reset the game to reuse this object
-         */
-
+        
         var tilesLeft = 0;
         var availableTiles = 0;
 
@@ -114,7 +108,7 @@ angular.module('geeGeeApp')
          * @description
          */
         this.isGameOver = function () {
-            return tilesLeft > 0 && availableTiles > 0;
+            return tilesLeft <= 0 || availableTiles <= 0;
         };
 
         /**

@@ -23,5 +23,9 @@ angular.module('geeGeeApp')
             points -= pointsToRemove;
         };
 
+        this.resetPoints = function () {
+            points = 0;
+        }
+
         return this;
     });
