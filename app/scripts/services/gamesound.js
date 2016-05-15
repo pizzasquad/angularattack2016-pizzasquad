@@ -11,10 +11,7 @@ angular.module('geeGeeApp')
     .factory('GameSound', function () {
         
         const soundFiles = [
-            "sounds/start.wav",
-            "sounds/right_select.wav",
-            "sounds/wrong_select.wav",
-            "sound/game_win.wav"
+            "sounds/start.mp3"
         ];
 
         this.loadedSounds = undefined;
@@ -33,8 +30,6 @@ angular.module('geeGeeApp')
             sounds.whenLoaded = function () {
                 self.loadedSounds = {
                     gameStart: sounds["sounds/start.wav"],
-                    rightSelection: sounds["sounds/right_select.wav"],
-                    wrongSelection: sounds["sounds/wrong_select.wav"],
                     gameWin: sounds["sounds/game_win.wav"]
                 }
             };
@@ -64,7 +59,7 @@ angular.module('geeGeeApp')
         };
 
         this.wrongSelection = function () {
-            this.play(loadedSounds.wrongSelection);
+            soundEffect(523.25, 0.05, 0.2, "sine", 3, 0.8, 0, 600, true, 100, 0);
         };
 
         this.rightSelection = function () {
@@ -75,7 +70,7 @@ angular.module('geeGeeApp')
         };
 
         this.gameWin = function () {
-            this.play(loadedSounds.gameWin);
+            // TODO: find sound or effect
         };
 
         // Init the factory
