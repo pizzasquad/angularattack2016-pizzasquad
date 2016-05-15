@@ -36,6 +36,10 @@ md-toolbar {
     border-radius: 35%;
 }
 
+.pizza-container {
+    overflow: hidden;
+}
+
 .small-pizza {
     width: 64px;
     height: 64px;    
@@ -59,4 +63,15 @@ md-toolbar {
 
 md-content > h1.md-display-2 {
     margin-top: 0;
+}
+
+.fill-pizza {
+    background-color: yellow;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.complete-pizza {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
 }
