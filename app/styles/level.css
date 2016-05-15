@@ -56,3 +56,7 @@
 .tile img {
     border-radius: 35%;
 }
+
+.tile.bonus {
+  background-color: red !important;
+}

@@ -63,7 +63,8 @@ angular.module('geeGeeApp')
                         filled: false,
                         selectable: true,
                         x: j,
-                        y: i
+                        y: i,
+                        bonus: 0
                     };
                 }
             }
@@ -75,7 +76,8 @@ angular.module('geeGeeApp')
                     filled: false,
                     selectable: true,
                     x: mapData.mapTiles[i].x,
-                    y: mapData.mapTiles[i].y
+                    y: mapData.mapTiles[i].y,
+                    bonus: 0
                 };
             }
 
@@ -193,6 +195,10 @@ angular.module('geeGeeApp')
             // Change the flag of the tile
             map[y][x].filled = true;
 
+            console.log(map[x][y]);
+            points.addPoints(map[x][y].bonus);
+            map[x][y].bonus = 0;
+
             // Update the counter of the tile to fill left
             if (map[y][x].type === TILE.TO_FILL) {
                 tilesLeft--;
@@ -215,6 +221,35 @@ angular.module('geeGeeApp')
          */
         this.getMovesCount = function () {
             return moves;
+        };
+
+        /**
+         * @ngdoc method
+         * @name generateBonus
+         * @description
+         * Generate a new random bonus
+         */
+        this.generateBonus = function () {
+            while (true) {
+                var x = Math.floor(Math.random() * 10);
+                var y = Math.floor(Math.random() * 10);
+
+                if (map[x][y].filled)
+                    continue;
+
+                map[x][y].bonus = Math.random() > 0.5 ? 20 : 10;
+                return { x: x, y: y };
+            }
+        };
+
+        /**
+         * @ngdoc method
+         * @name clearBonus
+         * @description
+         * Clear all the bonus in the map
+         */
+        this.clearBonus = function (point) {
+            map[point.x][point.y].bonus = 0;
         };
 
         this.reset();
