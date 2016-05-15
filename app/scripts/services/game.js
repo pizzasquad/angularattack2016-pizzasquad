@@ -25,6 +25,9 @@ angular.module('geeGeeApp')
         var map = null;
         var points = null;
 
+        // Moves counter
+        var moves;
+
         this.reset = function () {
             // Create a new point object
             points = Point;
@@ -37,6 +40,9 @@ angular.module('geeGeeApp')
 
             // counter of available tile
             availableTiles = 0;
+
+            // Reset moves counter
+            moves = 0;
         };
 
         /**
@@ -200,6 +206,19 @@ angular.module('geeGeeApp')
 
             // Update the map with the new available tiles
             _updateAvailableTile(x, y);
+
+            // Increment the moves counter
+            moves++;
+        };
+
+        /**
+         * @ngdoc method
+         * @name getMovesCount
+         * @description
+         * Return the number of moves.
+         */
+        this.getMovesCount = function () {
+            return moves;
         };
 
         this.reset();
