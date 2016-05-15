@@ -38,16 +38,23 @@ md-toolbar {
 
 .small-pizza {
     width: 64px;
-    height: 64px;
+    height: 64px;    
     border-radius: 35%;
     margin: 8px;
     background-color: green;
+    overflow: hidden;
 }
 
 .choose-pizza {
-    /*position: relative; */
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s
+    -webkit-animation-duration: 4s;
+    animation-duration: 4s;
+    animation-name: choose-pizza;
+}
+
+@keyframes choose-pizza {
+    0% { background-color: green; }
+    12% { background-color: yellow; }
+    25% { background-color: green; }
 }
 
 md-content > h1.md-display-2 {
