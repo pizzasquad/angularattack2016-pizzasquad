@@ -21,10 +21,19 @@ md-toolbar {
     animation-name: choose-pizza;
 }
 
+
 @keyframes choose-pizza {
     0% { background-color: green; }
     12% { background-color: yellow; }
     25% { background-color: green; }
+}
+
+@keyframes my-tada {
+    0% { transform: scale(1); } 
+    2%, 5% { transform: scale(0.9) rotate(-3deg); } 
+    7%, 12%, 23%, 26% { transform: scale(1.1) rotate(3deg); }
+    13%, 6%, 26% { transform: scale(1.1) rotate(-3deg); }
+    25% { transform: scale(1) rotate(0); }
 }
 
 md-content > h1.md-display-2 {
@@ -40,4 +49,8 @@ md-content > h1.md-display-2 {
 .complete-pizza {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
+}
+
+.choosed-pizza {
+    background-color: blue;
 }
