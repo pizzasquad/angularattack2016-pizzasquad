@@ -195,9 +195,8 @@ angular.module('geeGeeApp')
             // Change the flag of the tile
             map[y][x].filled = true;
 
-            console.log(map[x][y]);
-            points.addPoints(map[x][y].bonus);
-            map[x][y].bonus = 0;
+            Point.addPoints(map[y][x].bonus);
+            map[y][x].bonus = 0;
 
             // Update the counter of the tile to fill left
             if (map[y][x].type === TILE.TO_FILL) {
@@ -237,7 +236,7 @@ angular.module('geeGeeApp')
                 if (map[x][y].filled)
                     continue;
 
-                map[x][y].bonus = Math.random() > 0.5 ? 20 : 10;
+                map[x][y].bonus = 20;
                 return { x: x, y: y };
             }
         };
