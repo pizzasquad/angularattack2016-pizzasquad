@@ -9,7 +9,7 @@
 
 .tile.SELECTABLE {
     cursor: pointer;
-    background-color: yellow;
+    background-color: yellow !important;
 }
 
 .tile.TO_NOT_FILL {

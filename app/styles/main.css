@@ -8,10 +8,10 @@ md-toolbar {
 
 .small-pizza {
     width: 64px;
-    height: 64px;    
+    height: 64px;
     border-radius: 35%;
     margin: 8px;
-    background-color: green;
+    background-color: #A7FFEB;
     overflow: hidden;
 }
 
@@ -22,9 +22,9 @@ md-toolbar {
 }
 
 @keyframes choose-pizza {
-    0% { background-color: green; }
+    0% { background-color: #A7FFEB; }
     12% { background-color: yellow; }
-    25% { background-color: green; }
+    25% { background-color: #A7FFEB; }
 }
 
 md-content > h1.md-display-2 {
