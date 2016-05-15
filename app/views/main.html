@@ -1,6 +1,6 @@
 <md-content layout="column" flex="100">
 	<md-content layout="row" flex layout-align="center center">
-		
+
 		<!-- Previous instruction tab button -->
 	    <md-content layout="column" layout-align="center center" style="min-width: 72px; max-width: 72px;">
 			<md-button  ng-show="selectedTab > 0" ng-click="previousTab()" class="md-fab md-primary">
@@ -10,9 +10,9 @@
 
 		<!-- Current instruction tab -->
 		<md-card flex="60">
-			
+
 			<md-tabs md-selected="selectedTab" style="min-height: 550px;" md-dynamic-height="false" md-border-bottom md-no-pagination="false" md-center-tabs="true">
-			  	
+
 			  	<!-- Choose tab -->
 			  	<md-tab label="Choose">
 			  		<md-content layout="column" layout-align="space-between center" layout-padding>
@@ -40,12 +40,12 @@
 
 
 			  	<!-- Continue tab -->
-			  	<md-tab label="Fill">
+			  	<md-tab label="Eat">
 			  		<md-content layout="column" layout-padding layout-align="center center">
-			  			
+
 			  			<!-- Title -->
-	                    <h1 class="md-display-2">Fill the tile you like</h1>
-			  			
+	                    <h1 class="md-display-2">Eat all the pizzas</h1>
+
 			  			<!-- Animation -->
 				  		<md-content layout="column">
 					  		<md-content layout="row" class="pizza-container">
@@ -66,8 +66,8 @@
 					  	</md-content>
 
 			  			<!-- Description -->
-	                    <p style="text-align: center;">Fill the selected tile with a click. When you choose a tile, the selectable tiles will change
-	                        their color.</p>
+	                    <p style="text-align: center;">When you choose a tile, the selectable tiles will change
+	                        their color. Your goal is to eat all the pizzas.</p>
 			  		</md-content>
 			  	</md-tab>
 
@@ -95,7 +95,7 @@
 					  	</md-content>
 
 			  			<!-- Desctiption -->
-	                    <p style="text-align: center;">Complete the shape and unlock to the next level!</p>
+	                    <p style="text-align: center;">Eat all the pizzas and unlock the next level!</p>
 			  			<md-content layout="row" layout-align="center ">
 			  				<md-button ng-click="goToMap('map_01')" class="md-primary md-raised">Play!</md-button>
 			  			</md-content>
