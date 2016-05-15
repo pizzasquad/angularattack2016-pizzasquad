@@ -15,12 +15,16 @@
                     <md-grid-tile
                             ng-repeat="tile in getTiles(map) track by $index"
                             ng-click="onClickTile(tile)"
-                            ng-class="'tile ' + tile.type + ' ' + (tile.filled ? 'FILLED' : '') + ' ' + (tile.selectable && getMovesCount() > 0 ? 'SELECTABLE' : '') + ' ' + (getMovesCount() < 1 ? 'SELECTABLE_FIRST_MOVE' : '') + ' ' + (tile.bonus > 0 ? 'animated tada infinite bonus' : '')">
+                            ng-class="'tile ' + tile.type + ' ' + (tile.filled ? 'FILLED' : '') + ' ' + (tile.selectable && getMovesCount() > 0 ? 'SELECTABLE' : '') + ' ' + (getMovesCount() < 1 ? 'SELECTABLE_FIRST_MOVE' : '') + ' ' + (tile.bonus > 0 ? 'animated tada infinite' : '')">
                             <img ng-src="images/pizza_shadow_10.png" layout-fill>
                     </md-grid-tile>
         </md-grid-list>
     </md-content>
+<<<<<<< HEAD
 </md-content>
 <md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
     <span>BONUS</span>
 </md-whiteframe>
+=======
+</md-content>
+>>>>>>> bonus-improve
