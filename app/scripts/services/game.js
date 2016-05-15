@@ -25,6 +25,7 @@ angular.module('geeGeeApp')
         this.reset = function () {
             // Create a new point object
             points = Point;
+            points.resetPoints();
 
             // This map will be crated by the loadMap method
             map = null;
