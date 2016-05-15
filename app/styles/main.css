@@ -2,9 +2,8 @@ md-toolbar {
     margin-bottom: 15px;
 }
 
-.grid-container {
-    margin: 0 auto;
-    width: 70%;
+.game-container {
+    width: 70vh;
 }
 
 .tile {

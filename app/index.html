@@ -17,30 +17,34 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
-<body ng-app="geeGeeApp">
+<body ng-app="geeGeeApp" layout="column" layout-fill>
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<md-content layout="column" layout-fill>
-    <md-toolbar layout-align="center center" ng-controller="ToolbarCtrl">
-        <div class="md-toolbar-tools">
-            <h2>
-                <span>NameOfTheApp</span>
-            </h2>
-            <span flex></span>
-            <span>{{pointsHandler.getPoints()}} pts (avail: {{game.getAvailableTiles()}}, left: {{game.getTilesLeft()}})</span>
-            <span flex></span>
-            <md-button class="md-icon-button" aria-label="About">
-                <md-icon class="material-icons">face</md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
+<md-toolbar layout-align="center center" ng-controller="ToolbarCtrl">
+    
+    <!-- App title in the top left corcer -->
+    <div class="md-toolbar-tools">
+        <h2>
+            <span>NameOfTheApp</span>
+        </h2>
 
+    <!-- Fill the remaining space -->
+    <span flex></span>
 
-    <md-content layout="row" flex style="background-color: blue;" ng-view=""></md-content>
-</md-content>
+    <!-- User avatar in the top right corner -->
+    <span>{{pointsHandler.getPoints()}} pts (avail: {{game.getAvailableTiles()}}, left: {{game.getTilesLeft()}})</span>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="About">
+            <md-icon class="material-icons">face</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<!-- Main content -->
+<md-content layout="row" ng-view=""></md-content>
 
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
