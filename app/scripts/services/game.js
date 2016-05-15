@@ -114,7 +114,7 @@ angular.module('geeGeeApp')
          * @description
          */
         this.isGameOver = function () {
-            return tilesLeft > 0 && availableTiles > 0;
+            return tilesLeft <= 0 || availableTiles <= 0;
         };
 
         /**
