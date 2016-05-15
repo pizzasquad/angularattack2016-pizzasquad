@@ -51,4 +51,8 @@ angular.module('geeGeeApp')
 
             Game.select(tile.x, tile.y);
         }
+
+        $scope.getMovesCount = function () {
+          return Game.getMovesCount();
+        }
     });

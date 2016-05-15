@@ -14,7 +14,7 @@
                     <md-grid-tile
                             ng-repeat="tile in getTiles(map) track by $index"
                             ng-click="onClickTile(tile)"
-                            ng-class="'tile ' + tile.type + ' ' + (tile.filled ? 'FILLED' : '') + ' ' + (tile.selectable ? 'SELECTABLE' : '')">
+                            ng-class="'tile ' + tile.type + ' ' + (tile.filled ? 'FILLED' : '') + ' ' + (tile.selectable && getMovesCount() > 0 ? 'SELECTABLE' : '') + ' ' + (getMovesCount() < 1 ? 'SELECTABLE_FIRST_MOVE' : '')">
                             <img ng-src="images/pizza_shadow_10.png" layout-fill>
                     </md-grid-tile>
         </md-grid-list>
