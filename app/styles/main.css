@@ -1,5 +1,6 @@
 md-toolbar {
     margin-bottom: 15px;
+    background-color: #26A69A;
 }
 
 .pizza-container {
@@ -29,8 +30,8 @@ md-toolbar {
 }
 
 @keyframes my-tada {
-    0% { transform: scale(1); } 
-    2%, 5% { transform: scale(0.9) rotate(-3deg); } 
+    0% { transform: scale(1); }
+    2%, 5% { transform: scale(0.9) rotate(-3deg); }
     7%, 12%, 23%, 26% { transform: scale(1.1) rotate(3deg); }
     13%, 6%, 26% { transform: scale(1.1) rotate(-3deg); }
     25% { transform: scale(1) rotate(0); }

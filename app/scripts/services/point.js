@@ -19,11 +19,6 @@ angular.module('geeGeeApp')
             points += pointsToAdd;
         };
 
-        // FIXME: @Deprecated
-        this.remove = function (pointsToRemove) {
-            this.removePoints(pointsToRemove);
-        };
-
         this.removePoints = function (pointsToRemove) {
             points -= pointsToRemove;
         };
