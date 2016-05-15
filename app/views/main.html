@@ -1,7 +1,7 @@
 <md-content layout="row" flex layout-align="center center">
 	
 	<!-- Previous instruction tab button -->
-	<md-content layout="column" layout-align="center center" ng-if="selectedTab > 0">
+    <md-content layout="column" layout-align="center center" ng-show="selectedTab > 0">
 		<md-button ng-click="previousTab()" class="md-fab md-primary">
 			<md-icon>arrow_back</md-icon>
 	  	</md-button>
@@ -16,14 +16,15 @@
 		  	<md-tab label="Choose">
 		  		<md-content layout="column" layout-padding>
 			  		<!-- Title -->
-			  		<h1 class="md-display-2">Choose the tile</h1>
+                    <h1 class="md-display-2">Choose a starting tile</h1>
 
 			  		<!-- Animation -->
 			  		<md-content layout="row" layout-align="center">
 				  		<md-content layout="column">
 				  			<md-content layout="row">
-								<img class="small-pizza choose-pizza" src="images/pizza_shadow_10.png">
-								<img class="small-pizza choose-pizza" style="animation-delay: 2s;" src="images/pizza_shadow_10.png">
+                                <img class="small-pizza choose-pizza animated tada" src="images/pizza_shadow_10.png">
+                                <img class="small-pizza choose-pizza animated tada" style="animation-delay: 1.1s;"
+                                     src="images/pizza_shadow_10.png">
 				  			</md-content>
 				  			<md-content layout="row">
 								<img class="small-pizza choose-pizza" style="animation-delay: 4s;" src="images/pizza_shadow_10.png">
@@ -33,7 +34,7 @@
 			  		</md-content>
 
 			  		<!-- Description -->
-					<p>Choose the first tile you want to fill. You can start every where!</p>
+                    <p>Choose the first tile you want to fill. You can start wherever you like!</p>
 				</md-content>
 		  	</md-tab>
 
@@ -42,7 +43,7 @@
 		  		<md-content layout="column" layout-padding>
 		  			
 		  			<!-- Title -->
-		  			<h1 class="md-display-2">Fill your tile</h1>
+                    <h1 class="md-display-2">Fill the tile you like</h1>
 		  			
 		  			<!-- Animation -->
 		  			<md-content layout="row" layout-align="center">
@@ -59,7 +60,8 @@
 		  			</md-content>
 
 		  			<!-- Description -->
-		  			<p>Fill the selected tile with a click. When you choose a tile, the near tiles will change their color.</p>
+                    <p>Fill the selected tile with a click. When you choose a tile, the selectable tiles will change
+                        their color.</p>
 		  		</md-content>
 		  	</md-tab>
 
@@ -68,7 +70,7 @@
 		  		<md-content layout="column" layout-padding>
 
 		  			<!-- title -->
-		  			<h1 class="md-display-2">Complete</h1>
+                    <h1 class="md-display-2">Unlock all the levels</h1>
 
 		  			<!-- Animation -->
   					<md-content layout="row" layout-align="center">
@@ -85,7 +87,7 @@
 		  			</md-content>
 
 		  			<!-- Desctiption -->
-		  			<p>Complete the figure and go to the next level!</p>
+                    <p>Complete the shape and unlock to the next level!</p>
 		  			<md-content layout="row" layout-align="center ">
 		  				<md-button ng-click="goToMap('map_01')" class="md-primary md-raised">Play!</md-button>
 		  			</md-content>
@@ -95,7 +97,7 @@
 	</md-card>
 
 	<!-- Next instruction tab button -->
-	<md-content layout="column" layout-align="center center" ng-if="selectedTab < 2">
+    <md-content layout="column" layout-align="center center" ng-show="selectedTab < 2">
 		<md-button ng-click="nextTab()" class="md-fab md-primary">
 			<md-icon>arrow_forward</md-icon>
 	  	</md-button>

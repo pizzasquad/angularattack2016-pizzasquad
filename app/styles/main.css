@@ -39,27 +39,17 @@ md-toolbar {
 .small-pizza {
     width: 64px;
     height: 64px;
-    border-radius: 25%;
+    border-radius: 35%;
     margin: 8px;
-    background-color: red;
+    background-color: green;
 }
 
 .choose-pizza {
-    position: relative;
-    -webkit-animation-name: choose;
-    -webkit-animation-duration: 2s;
-    animation-name: choose;
-    animation-duration: 2s;
+    /*position: relative; */
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s
 }
 
-@-webkit-keyframes choose {
-    0%   {background-color:red; }
-    50%  {background-color:blue; }
-    100%   {background-color:red; }
-}
-
-@keyframes choose {
-    0%   {background-color:red; }
-    50%  {background-color:blue; }
-    100%   {background-color:red; }
+md-content > h1.md-display-2 {
+    margin-top: 0;
 }
