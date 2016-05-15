@@ -8,7 +8,7 @@
  * Controller of the geeGeeApp
  */
 angular.module('geeGeeApp')
-    .controller('LevelCtrl', function ($scope, Point, $routeParams, $location, MapDownloader, Game) {
+    .controller('LevelCtrl', function ($scope, $routeParams, $location, MapDownloader, Game, Point, GameSound) {
         if (!$routeParams.mapName)
             $location.url('/');
 
@@ -46,9 +46,12 @@ angular.module('geeGeeApp')
         };
 
         $scope.onClickTile = function (tile) {
-            if (!tile.selectable)
+            if (!tile.selectable) {
+                GameSound.wrongSelection();
                 return false;
+            }
 
             Game.select(tile.x, tile.y);
+            GameSound.rightSelection();
         }
     });
