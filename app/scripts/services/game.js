@@ -16,22 +16,27 @@ angular.module('geeGeeApp')
          * Reset the game to reuse this object
          */
 
-        this.tilesLeft = 0;
-        this.mapWidth = 10;
-        this.mapHeight = 10;
+        var tilesLeft = 0;
+        var availableTiles = 0;
+
+        var mapWidth = 10;
+        var mapHeight = 10;
+
+        var map = null;
+        var points = null;
 
         this.reset = function () {
             // Create a new point object
-            this.points = Point;
+            points = Point;
 
             // This map will be crated by the loadMap method
-            this.map = undefined;
+            map = null;
 
             // Counter of title to fill left
-            this.tilesLeft = 0;
+            tilesLeft = 0;
 
             // counter of available tile
-            this.availbleTiles = 0;
+            availableTiles = 0;
         };
 
         /**
@@ -42,17 +47,17 @@ angular.module('geeGeeApp')
          * Load the map from the static file
          */
         this.loadMap = function (mapData) {
-            this.mapWidth = mapData.width;
-            this.mapHeight = mapData.height;
+            mapWidth = mapData.width;
+            mapHeight = mapData.height;
 
             // Create map matrix
-            this.map = new Array(mapData.height);
+            map = new Array(mapData.height);
 
             // Initialize matrix
             for (var i = 0; i < mapData.height; i++) {
-                this.map[i] = new Array(mapData.width);
+                map[i] = new Array(mapData.width);
                 for (var j = 0; j < mapData.width; j++) {
-                    this.map[i][j] = {
+                    map[i][j] = {
                         type: TILE.TO_NOT_FILL,
                         filled: false,
                         selectable: true,
@@ -64,7 +69,7 @@ angular.module('geeGeeApp')
 
             // Load map data in to matrix
             for (i = 0; i < mapData.mapTiles.length; i++) {
-                this.map[mapData.mapTiles[i].y][mapData.mapTiles[i].x] = {
+                map[mapData.mapTiles[i].y][mapData.mapTiles[i].x] = {
                     type: TILE.TO_FILL,
                     filled: false,
                     selectable: true,
@@ -73,7 +78,8 @@ angular.module('geeGeeApp')
                 };
             }
 
-            this.availableTiles = mapData.mapTiles.length;
+            availableTiles = mapWidth * mapHeight;
+            tilesLeft = mapData.mapTiles.length;
         };
 
         /**
@@ -83,7 +89,7 @@ angular.module('geeGeeApp')
          * Return the map of the game, to draw it
          */
         this.getMap = function () {
-            return this.map;
+            return map;
         };
 
         /**
@@ -93,7 +99,7 @@ angular.module('geeGeeApp')
          * Return the point oobject of this game
          */
         this.getPoints = function () {
-            return this.points;
+            return points;
         };
 
         /**
@@ -102,7 +108,7 @@ angular.module('geeGeeApp')
          * @description
          */
         this.isGameOver = function () {
-            return this.tilesLeft > 0 && this.availableTiles > 0;
+            return tilesLeft > 0 && availableTiles > 0;
         };
 
         /**
@@ -112,27 +118,7 @@ angular.module('geeGeeApp')
          * Return true if the tile is selectable (TO_FILL or TO_NOT_FILL)
          */
         this.isSelectable = function (x, y) {
-            return this.map[x][y].selectable;
-        };
-
-        /**
-         * @ngdoc method
-         * @name select
-         * @description
-         * Select the specified tile and update the map with the new available tile
-         */
-        this.select = function (x, y) {
-            // Change the flag of the tile
-            this.map[y][x].filled = true;
-
-            // Update the counter of the tile to fill left
-            if (this.map[y][x].type === TILE.TO_FILL) {
-                this.tilesLeft--;
-                Point.addPoints(10);
-            }
-
-            // Update the map with the new available tiles
-            this._updateAvailableTile(x, y);
+            return map[x][y].selectable;
         };
 
         /**
@@ -141,16 +127,15 @@ angular.module('geeGeeApp')
          * @description
          * Update the map, changing the tile state to match the new game state.
          */
-        this._updateAvailableTile = function (lastSelectedX, lastSelectedY) {
+        var _updateAvailableTile = function (lastSelectedX, lastSelectedY) {
             // Clear the map, removing all the selectable tiles
-            this.availableTiles = 0;
-            this.tilesLeft = 0;
+            availableTiles = 0;
 
-            for (var rowNum in this.map) {
-                if (!this.map.hasOwnProperty(rowNum))
+            for (var rowNum in map) {
+                if (!map.hasOwnProperty(rowNum))
                     continue;
 
-                var tiles = this.map[rowNum];
+                var tiles = map[rowNum];
                 for (var j = 0; j < tiles.length; j++) {
                     // Return to the not selectable state
                     tiles[j].selectable = false;
@@ -168,8 +153,6 @@ angular.module('geeGeeApp')
                 }
             };
 
-            var self = this;
-
             for (var positionTypes in validPositionsCoordinates) {
                 if (!validPositionsCoordinates.hasOwnProperty(positionTypes))
                     continue;
@@ -179,24 +162,44 @@ angular.module('geeGeeApp')
 
                 xCoordinates.forEach(function (x) {
                     yCoordinates.forEach(function (y) {
-                        if (x >= 0 && x < self.mapWidth && y >= 0 && y < self.mapHeight) {
-                            self.map[y][x].selectable = true;
+                        if (x >= 0 && x < mapWidth && y >= 0 && y < mapHeight) {
+                            if (!map[y][x].filled) {
+                                map[y][x].selectable = true;
 
-                            self.availableTiles++;
+                                availableTiles++;
+                            }
                         }
                     });
                 });
             }
+        };
 
-            // Switch state of the tile
-            /*if (row[j].type === TILE.TO_FILL || row[j] == TILE.TO_NOT_FILL) {
-                row[j] = row[j] == TILE.TO_FILL ? TILE.SELECTABLE : TILE.SELECTABLE_TO_NOT_FILL;
+        this.getAvailableTiles = function () {
+            return availableTiles;
+        };
 
-                if (row[j] == TILE.SELECTABLE) {
-                    this.tileLeft++;
-                }
-                this.availableTiles++;
-            } */
+        this.getTilesLeft = function () {
+            return tilesLeft;
+        };
+
+        /**
+         * @ngdoc method
+         * @name select
+         * @description
+         * Select the specified tile and update the map with the new available tile
+         */
+        this.select = function (x, y) {
+            // Change the flag of the tile
+            map[y][x].filled = true;
+
+            // Update the counter of the tile to fill left
+            if (map[y][x].type === TILE.TO_FILL) {
+                tilesLeft--;
+                Point.addPoints(10);
+            }
+
+            // Update the map with the new available tiles
+            _updateAvailableTile(x, y);
         };
 
         this.reset();

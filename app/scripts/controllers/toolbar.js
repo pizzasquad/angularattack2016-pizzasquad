@@ -10,4 +10,6 @@
 angular.module('geeGeeApp')
     .controller('ToolbarCtrl', function ($scope, Game) {
         $scope.pointsHandler = Game.getPoints();
+
+        $scope.game = Game;
     });
