@@ -77,6 +77,7 @@ angular.module('geeGeeApp')
                 if (victory) {
                     // Go to next map
                 } else {
+                    Point.resetPoints();
                     $route.reload();
                 }
             }, function() {
