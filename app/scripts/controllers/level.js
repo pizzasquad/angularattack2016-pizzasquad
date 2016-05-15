@@ -8,7 +8,7 @@
  * Controller of the geeGeeApp
  */
 angular.module('geeGeeApp')
-    .controller('LevelCtrl', function ($scope, Point, $routeParams, $location, MapDownloader, Game) {
+    .controller('LevelCtrl', function ($scope, Point, $route, $routeParams, $location, $mdDialog, MapDownloader, Game) {
         if (!$routeParams.mapName)
             $location.url('/');
 
@@ -45,10 +45,42 @@ angular.module('geeGeeApp')
             return ans;
         };
 
-        $scope.onClickTile = function (tile) {
+        $scope.onClickTile = function (tile, $event) {
             if (!tile.selectable)
                 return false;
 
             Game.select(tile.x, tile.y);
+
+            if (Game.isGameOver())
+                gameEnd($event);
+        }
+
+        /*
+         * Call this function when the game end.
+        */
+        function gameEnd ($event) {
+            var confirm = $mdDialog.confirm()
+                  .title('Game Over')
+                  .textContent('Would you like to start a new game?')
+                  .targetEvent($event);
+
+            var victory = Game.getTilesLeft() <= 0;
+
+            if (victory) {
+                confirm.ok('Next Level')
+                    .cancel('Retry');
+            } else {
+                confirm.ok("Retry");
+            }
+
+            $mdDialog.show(confirm).then(function() {
+                if (victory) {
+                    // Go to next map
+                } else {
+                    $route.reload();
+                }
+            }, function() {
+                $route.reload();
+            });
         }
     });
