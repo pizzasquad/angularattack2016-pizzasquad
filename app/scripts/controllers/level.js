@@ -19,17 +19,26 @@ angular.module('geeGeeApp')
         $scope.height = 10;
 
         $scope.mapName = $routeParams.mapName;
-        MapDownloader.downloadMap($scope.mapName).then(
-            function (response) {
-                Game.loadMap(response.data);
-                $scope.map = Game.getMap();
 
-                $scope.width = response.data.width;
-                $scope.height = response.data.height;
-            }, function () {
-                console.warn(arguments);
-                $location.url('/');
-            });
+        if ($scope.mapName == 'random') {
+            showMap(MapDownloader.generateRandom());
+        } else {
+            MapDownloader.downloadMap($scope.mapName).then(
+                function (response) {
+                    showMap(response.data);
+                }, function () {
+                    console.warn(arguments);
+                    $location.url('/');
+                });
+        }
+
+        function showMap (map) {
+            Game.loadMap(map);
+            $scope.map = Game.getMap();
+
+            $scope.width = map.width;
+            $scope.height = map.height;
+        }
 
         $scope.getTiles = function (map) {
             var ans = [];
@@ -74,13 +83,15 @@ angular.module('geeGeeApp')
             }
 
             $mdDialog.show(confirm).then(function() {
-                if (victory) {
+                if (confirm) {
                     // Go to next map
+                    $location.url('/level/' + MapDownloader.getNextMapName($routeParams.mapName));
                 } else {
-                    Point.resetPoints();
+                    // Reload this state
                     $route.reload();
                 }
             }, function() {
+                // Reload this state
                 $route.reload();
             });
         }
