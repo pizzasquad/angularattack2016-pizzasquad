@@ -31,12 +31,12 @@
         <h2>
             <span>NameOfTheApp</span>
         </h2>
+        <span flex></span>
 
-    <!-- Fill the remaining space -->
-    <span flex></span>
-
-    <!-- User avatar in the top right corner -->
-    <span>{{pointsHandler.getPoints()}} pts (avail: {{game.getAvailableTiles()}}, left: {{game.getTilesLeft()}})</span>
+        <!-- Points counter -->
+        <span ng-if="!!params.mapName">{{pointsHandler.getPoints()}} pts (avail: {{game.getAvailableTiles()}}, left: {{game.getTilesLeft()}})</span>
+        
+        <!-- User avatar in the top right corner -->
         <span flex></span>
         <md-button class="md-icon-button" aria-label="About">
             <md-icon class="material-icons">face</md-icon>
