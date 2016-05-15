@@ -28,6 +28,11 @@ angular
                 controller: 'LevelCtrl',
                 controllerAs: 'level'
             })
+            .when('/authors', {
+              templateUrl: 'views/authors.html',
+              controller: 'AuthorsCtrl',
+              controllerAs: 'authors'
+            })
             .otherwise({
                 redirectTo: '/'
             });
