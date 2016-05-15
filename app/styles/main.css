@@ -1,5 +1,6 @@
 md-toolbar {
     margin-bottom: 15px;
+    background-color: #26A69A;
 }
 
 .pizza-container {
@@ -8,10 +9,10 @@ md-toolbar {
 
 .small-pizza {
     width: 64px;
-    height: 64px;    
+    height: 64px;
     border-radius: 35%;
     margin: 8px;
-    background-color: green;
+    background-color: #A7FFEB;
     overflow: hidden;
 }
 
@@ -21,10 +22,19 @@ md-toolbar {
     animation-name: choose-pizza;
 }
 
+
 @keyframes choose-pizza {
-    0% { background-color: green; }
+    0% { background-color: #A7FFEB; }
     12% { background-color: yellow; }
-    25% { background-color: green; }
+    25% { background-color: #A7FFEB; }
+}
+
+@keyframes my-tada {
+    0% { transform: scale(1); }
+    2%, 5% { transform: scale(0.9) rotate(-3deg); }
+    7%, 12%, 23%, 26% { transform: scale(1.1) rotate(3deg); }
+    13%, 6%, 26% { transform: scale(1.1) rotate(-3deg); }
+    25% { transform: scale(1) rotate(0); }
 }
 
 md-content > h1.md-display-2 {
@@ -40,4 +50,12 @@ md-content > h1.md-display-2 {
 .complete-pizza {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
+}
+
+.choosed-pizza {
+    background-color: #B2DFDB;
+}
+
+.choosed-pizza img{
+    display: none;
 }
