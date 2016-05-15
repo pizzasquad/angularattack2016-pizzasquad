@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="styles/level.css">
     <!-- endbuild -->
 </head>
-<body ng-app="geeGeeApp" layout="column" layout-fill>
+<body ng-app="geeGeeApp" layout="column" layout-fill ng-cloak>
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -29,18 +29,14 @@
     <!-- App title in the top left corcer -->
     <div class="md-toolbar-tools">
         <h2>
-            <span>GeeGee</span>
+            <a ng-href="#/">GeeGee</a>
         </h2>
         <span flex></span>
 
         <!-- Points counter -->
         <span ng-if="!!params.mapName">{{pointsHandler.getPoints()}} pts (avail: {{game.getAvailableTiles()}}, left: {{game.getTilesLeft()}})</span>
-        
-        <!-- User avatar in the top right corner -->
+
         <span flex></span>
-        <md-button class="md-icon-button" aria-label="About">
-            <md-icon class="material-icons">face</md-icon>
-        </md-button>
     </div>
 </md-toolbar>
 
@@ -71,6 +67,7 @@
 <script src="scripts/services/point.js"></script>
 <script src="scripts/services/game.js"></script>
 <script src="scripts/services/mapdownloader.js"></script>
+<script src="scripts/controllers/authors.js"></script>
 <!-- endbuild -->
 </body>
 </html>
