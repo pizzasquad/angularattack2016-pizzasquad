@@ -9,22 +9,31 @@
 
 .tile.SELECTABLE {
     cursor: pointer;
-}
-
-.tile.TO_NOT_FILL {
     background-color: yellow;
 }
 
+.tile.TO_NOT_FILL {
+    background-color: #26A69A;
+}
+
 .tile.TO_NOT_FILL.FILLED {
-    background-color: #ffc100;
+    background-color: #004D40;
 }
 
 .tile.TO_FILL {
-    background-color: green;
+    background-color: #A7FFEB;
+}
+
+.tile.TO_NOT_FILL img{
+  display: none;
 }
 
 .tile.TO_FILL.FILLED {
-    background-color: darkgreen;
+  background-color: #B2DFDB;
+}
+
+.tile.TO_FILL.FILLED img{
+  display: none;
 }
 
 .tile img {
