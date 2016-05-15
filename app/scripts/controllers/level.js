@@ -83,4 +83,8 @@ angular.module('geeGeeApp')
                 $route.reload();
             });
         }
+
+        $scope.getMovesCount = function () {
+          return Game.getMovesCount();
+        }
     });

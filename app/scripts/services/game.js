@@ -203,6 +203,7 @@ angular.module('geeGeeApp')
                 tilesLeft--;
                 Point.addPoints(10);
             }
+            else Point.removePoints(10);
 
             // Update the map with the new available tiles
             _updateAvailableTile(x, y);

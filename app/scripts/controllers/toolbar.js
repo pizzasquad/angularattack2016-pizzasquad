@@ -8,8 +8,10 @@
  * Controller of the geeGeeApp
  */
 angular.module('geeGeeApp')
-    .controller('ToolbarCtrl', function ($scope, Game) {
+    .controller('ToolbarCtrl', function ($scope, $routeParams, Game) {
         $scope.pointsHandler = Game.getPoints();
 
         $scope.game = Game;
+
+        $scope.params = $routeParams;
     });
