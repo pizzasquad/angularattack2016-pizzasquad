@@ -1,4 +1,101 @@
-<md-content>
-    Qui dovremmo mettere le istruzioni e il benvenuto...<br>
-    Link di test: <a style="text-decoration: underline;" ng-click="goToMap('map_01')">Vai alla prima mappa</a>
+<md-content layout="column" flex="100">
+	<md-content layout="row" flex layout-align="center center">
+		
+		<!-- Previous instruction tab button -->
+	    <md-content layout="column" layout-align="center center" style="min-width: 72px; max-width: 72px;">
+			<md-button  ng-show="selectedTab > 0" ng-click="previousTab()" class="md-fab md-primary">
+				<md-icon>arrow_back</md-icon>
+		  	</md-button>
+		</md-content>
+
+		<!-- Current instruction tab -->
+		<md-card flex="60">
+			
+			<md-tabs md-selected="selectedTab" style="min-height: 500px;" md-dynamic-height="false" md-border-bottom md-no-pagination="false" md-center-tabs="true">
+			  	
+			  	<!-- Choose tab -->
+			  	<md-tab label="Choose">
+			  		<md-content layout="column" layout-align="center center" layout-padding>
+				  		<!-- Title -->
+	                    <h1 class="md-display-2">Choose a starting tile</h1>
+
+				  		<!-- Animation -->
+				  		<md-content layout="column">
+					  		<md-content layout="row" class="pizza-container">
+	                            <img class="small-pizza choose-pizza animated infinite" src="images/pizza_shadow_10.png">
+	                            <img class="small-pizza choose-pizza animated infinite" style="animation-delay: 1.1s;"
+	                                     src="images/pizza_shadow_10.png">
+					  		</md-content>
+					  		<md-content layout="row" class="pizza-container">
+								<img class="small-pizza choose-pizza animated infinite" style="animation-delay: 2.2s;" src="images/pizza_shadow_10.png">
+								<img class="small-pizza choose-pizza animated infinite" style="animation-delay: 3.3s;" src="images/pizza_shadow_10.png">
+					  		</md-content>
+					  	</md-content>
+
+				  		<!-- Description -->
+	                    <p>Choose the first tile you want to fill. You can start wherever you like!</p>
+					</md-content>
+			  	</md-tab>
+
+			  	<!-- Fill tab -->
+			  	<md-tab label="Fill">
+			  		<md-content layout="column" layout-padding layout-align="center center">
+			  			
+			  			<!-- Title -->
+	                    <h1 class="md-display-2">Fill the tile you like</h1>
+			  			
+			  			<!-- Animation -->
+				  		<md-content layout="column">
+					  		<md-content layout="row" class="pizza-container">
+	                            <img class="small-pizza animated" src="images/pizza_shadow_10.png">
+	                            <img class="small-pizza animated" src="images/pizza_shadow_10.png">
+					  		</md-content>
+					  		<md-content layout="row" class="pizza-container">
+	                            <img class="small-pizza animated fill-pizza tada infinite" src="images/pizza_shadow_10.png">
+	                            <img class="small-pizza animated" src="images/pizza_shadow_10.png">
+					  		</md-content>
+					  	</md-content>
+
+			  			<!-- Description -->
+	                    <p>Fill the selected tile with a click. When you choose a tile, the selectable tiles will change
+	                        their color.</p>
+			  		</md-content>
+			  	</md-tab>
+
+			  	<!-- Complete and continue -->
+			  	<md-tab label="Complete">
+			  		<md-content layout="column" layout-padding layout-align="center center">
+
+			  			<!-- title -->
+	                    <h1 class="md-display-2">Unlock all the levels</h1>
+
+			  			<!-- Animation -->
+				  		<md-content layout="column">
+					  		<md-content layout="row" class="pizza-container">
+	                            <img class="small-pizza complete-pizza animated tada infinite" src="images/pizza_shadow_10.png">
+	                            <img class="small-pizza complete-pizza animated tada infinite" src="images/pizza_shadow_10.png">
+					  		</md-content>
+					  		<md-content layout="row" class="pizza-container">
+	                            <img class="small-pizza complete-pizza animated tada infinite" src="images/pizza_shadow_10.png">
+	                            <img class="small-pizza complete-pizza animated tada infinite" src="images/pizza_shadow_10.png">
+					  		</md-content>
+					  	</md-content>
+
+			  			<!-- Desctiption -->
+	                    <p>Complete the shape and unlock to the next level!</p>
+			  			<md-content layout="row" layout-align="center ">
+			  				<md-button ng-click="goToMap('map_01')" class="md-primary md-raised">Play!</md-button>
+			  			</md-content>
+			  		</md-content>
+			  	</md-tab>
+			</md-tabs>
+		</md-card>
+
+		<!-- Next instruction tab button -->
+	    <md-content layout="column" layout-align="center center" style="min-width: 72px; max-width: 72px;">
+			<md-button ng-click="nextTab()" class="md-fab md-primary" ng-show="selectedTab < 2">
+				<md-icon>arrow_forward</md-icon>
+		  	</md-button>
+		</md-content>
+	</md-content>
 </md-content>
