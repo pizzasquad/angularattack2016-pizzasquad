@@ -36,30 +36,42 @@ md-toolbar {
     border-radius: 35%;
 }
 
+.pizza-container {
+    overflow: hidden;
+}
+
 .small-pizza {
     width: 64px;
-    height: 64px;
-    border-radius: 25%;
+    height: 64px;    
+    border-radius: 35%;
     margin: 8px;
-    background-color: red;
+    background-color: green;
+    overflow: hidden;
 }
 
 .choose-pizza {
-    position: relative;
-    -webkit-animation-name: choose;
-    -webkit-animation-duration: 2s;
-    animation-name: choose;
-    animation-duration: 2s;
+    -webkit-animation-duration: 4s;
+    animation-duration: 4s;
+    animation-name: choose-pizza;
 }
 
-@-webkit-keyframes choose {
-    0%   {background-color:red; }
-    50%  {background-color:blue; }
-    100%   {background-color:red; }
+@keyframes choose-pizza {
+    0% { background-color: green; }
+    12% { background-color: yellow; }
+    25% { background-color: green; }
 }
 
-@keyframes choose {
-    0%   {background-color:red; }
-    50%  {background-color:blue; }
-    100%   {background-color:red; }
+md-content > h1.md-display-2 {
+    margin-top: 0;
+}
+
+.fill-pizza {
+    background-color: yellow;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.complete-pizza {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
 }
