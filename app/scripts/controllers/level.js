@@ -60,7 +60,7 @@ angular.module('geeGeeApp')
 
             Game.select(tile.x, tile.y);
 
-            if (Game.isGameOver())
+            //if (Game.isGameOver())
                 gameEnd($event);
         }
 
@@ -75,7 +75,7 @@ angular.module('geeGeeApp')
 
             var victory = Game.getTilesLeft() <= 0;
 
-            if (victory) {
+            if (true) {
                 confirm.ok('Next Level')
                     .cancel('Retry');
             } else {
@@ -85,11 +85,12 @@ angular.module('geeGeeApp')
             $mdDialog.show(confirm).then(function() {
                 if (confirm) {
                     // Go to next map
-                    $location.url('/level/' + MapDownloader.getNextMapName($routeParams.mapName));
-                } else {
-                    // Reload this state
-                    $route.reload();
+                    $route.updateParams({
+                        mapName: MapDownloader.getNextMapName($routeParams.mapName)
+                    });
                 }
+
+                $route.reload();
             }, function() {
                 // Reload this state
                 $route.reload();

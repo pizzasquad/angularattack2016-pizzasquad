@@ -1,6 +1,7 @@
 <md-content flex layout="column" layout-align="space-between center">
     <!-- Map name -->
-    <h1>LEVEL {{mapName | limitTo: -2}}</h1>
+    <h1 ng-if="mapName != 'random'">LEVEL {{mapName | limitTo: -2}}</h1>
+    <h1 ng-if="mapName == 'random'">RANDOM MAP</h1>
 
     <!-- Game container -->
     <md-content flex class="game-container">
