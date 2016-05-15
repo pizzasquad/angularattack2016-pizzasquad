@@ -69,8 +69,8 @@ angular.module('geeGeeApp')
         */
         function gameEnd ($event) {
             var confirm = $mdDialog.confirm()
-                  .title('Game Over')
-                  .textContent('Would you like to start a new game?')
+                  .title('YOU WON')
+                  .textContent('Wanna have fun again, bro?')
                   .targetEvent($event);
 
             var victory = Game.getTilesLeft() <= 0;
@@ -79,15 +79,25 @@ angular.module('geeGeeApp')
                 confirm.ok('Next Level')
                     .cancel('Retry');
             } else {
-                confirm.ok("Retry");
+                confirm.title('GAME OVER')
+                  .ok('Random Map')
+                  .textContent('Never give up, bro!')
+                  .cancel("Retry")
             }
 
             $mdDialog.show(confirm).then(function() {
-                if (confirm) {
+                if (confirm && victory) {
                     // Go to next map
                     $route.updateParams({
                         mapName: MapDownloader.getNextMapName($routeParams.mapName)
                     });
+                }
+
+                else if (confirm && !victory) {
+                  // Try a random map
+                  $route.updateParams({
+                    mapName: 'random'
+                  });
                 }
 
                 $route.reload();
