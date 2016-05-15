@@ -15,20 +15,28 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/level.css">
     <!-- endbuild -->
 </head>
-<body ng-app="geeGeeApp">
+<body ng-app="geeGeeApp" layout="column" layout-fill>
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
+
 <md-toolbar layout-align="center center" ng-controller="ToolbarCtrl">
+    
+    <!-- App title in the top left corcer -->
     <div class="md-toolbar-tools">
         <h2>
             <span>NameOfTheApp</span>
         </h2>
-        <span flex></span>
-        <span>{{pointsHandler.getPoints()}} pts (avail: {{game.getAvailableTiles()}}, left: {{game.getTilesLeft()}})</span>
+
+    <!-- Fill the remaining space -->
+    <span flex></span>
+
+    <!-- User avatar in the top right corner -->
+    <span>{{pointsHandler.getPoints()}} pts (avail: {{game.getAvailableTiles()}}, left: {{game.getTilesLeft()}})</span>
         <span flex></span>
         <md-button class="md-icon-button" aria-label="About">
             <md-icon class="material-icons">face</md-icon>
@@ -36,9 +44,8 @@
     </div>
 </md-toolbar>
 
-<md-content>
-    <md-content layout-fill ng-view=""></md-content>
-</md-content>
+<!-- Main content -->
+<md-content layout="row" ng-view=""></md-content>
 
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->

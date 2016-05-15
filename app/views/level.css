@@ -1,0 +1,32 @@
+.game-container {
+    width: 70vh;
+}
+
+.tile {
+    border-radius: 35%;
+    outline: none;
+}
+
+.tile.SELECTABLE {
+    cursor: pointer;
+}
+
+.tile.TO_NOT_FILL {
+    background-color: yellow;
+}
+
+.tile.TO_NOT_FILL.FILLED {
+    background-color: #ffc100;
+}
+
+.tile.TO_FILL {
+    background-color: green;
+}
+
+.tile.TO_FILL.FILLED {
+    background-color: darkgreen;
+}
+
+.tile img {
+    border-radius: 35%;
+}
