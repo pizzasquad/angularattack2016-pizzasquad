@@ -60,7 +60,7 @@ angular.module('geeGeeApp')
 
             Game.select(tile.x, tile.y);
 
-            //if (Game.isGameOver())
+            if (Game.isGameOver())
                 gameEnd($event);
         }
 
@@ -75,7 +75,7 @@ angular.module('geeGeeApp')
 
             var victory = Game.getTilesLeft() <= 0;
 
-            if (true) {
+            if (victory) {
                 confirm.ok('Next Level')
                     .cancel('Retry');
             } else {
